@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "btn2", Toast.LENGTH_SHORT).show();
             }
         });
-//        aa
-//
+
 //        ListView listView = (ListView) findViewById(R.id.listView);
 //        listView.setAdapter(new Adapter());
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
