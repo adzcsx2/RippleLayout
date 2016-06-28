@@ -46,7 +46,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @SuppressLint("ClickableViewAccessibility")
-public class CycleRippleLinearLayout extends LinearLayout {
+public class RippleLinearLayout extends LinearLayout {
     private static final String TAG = "CircleRippleView";
 
     private static final int TYPE_DOT = 0;
@@ -99,15 +99,15 @@ public class CycleRippleLinearLayout extends LinearLayout {
         return (int) (dp * mDensity + 0.5f);
     }
 
-    public CycleRippleLinearLayout(Context context) {
+    public RippleLinearLayout(Context context) {
         this(context, null);
     }
 
-    public CycleRippleLinearLayout(Context context, AttributeSet attrs) {
+    public RippleLinearLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CycleRippleLinearLayout(Context context, AttributeSet attrs, int defStyle) {
+    public RippleLinearLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
         TypedArray a = context.obtainStyledAttributes(attrs,

@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.indris.sample.RippleViewActivity">
 
-    <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+    <com.sanniuben.circlerippleview.view.RippleLinearLayout
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="click" />
-    </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+    </com.sanniuben.circlerippleview.view.RippleLinearLayout>
 
     <!--<com.sanniuben.circlerippleview.view.CycleRippleView-->
     <!--android:id="@+id/btn2"-->
@@ -68,8 +68,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
-                android:id="@+id/btn"
+            <com.sanniuben.circlerippleview.view.RippleLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -88,9 +87,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="click" />
-            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+            </com.sanniuben.circlerippleview.view.RippleLinearLayout>
 
-            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+            <com.sanniuben.circlerippleview.view.RippleLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -109,9 +108,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="click" />
-            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+            </com.sanniuben.circlerippleview.view.RippleLinearLayout>
 
-            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+            <com.sanniuben.circlerippleview.view.RippleLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -130,9 +129,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="click" />
-            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+            </com.sanniuben.circlerippleview.view.RippleLinearLayout>
 
-            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+            <com.sanniuben.circlerippleview.view.RippleLinearLayout
                 android:id="@+id/btn_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,9 +151,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="click" />
-            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+            </com.sanniuben.circlerippleview.view.RippleLinearLayout>
 
-            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+            <com.sanniuben.circlerippleview.view.RippleLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -173,7 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="click" />
-            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+            </com.sanniuben.circlerippleview.view.RippleLinearLayout>
 
 
         </LinearLayout>
