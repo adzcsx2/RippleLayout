@@ -1,0 +1,189 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d2d2d2"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.indris.sample.RippleViewActivity">
+
+    <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/card_bk"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="35dp"
+        ripple:alphaFactor="0.7"
+        ripple:hover="true"
+        ripple:radius="20"
+        ripple:maxRadius="40"
+        ripple:rippleColor="#58FAAC"
+        ripple:rippleType="2">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="click" />
+    </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+
+    <!--<com.sanniuben.circlerippleview.view.CycleRippleView-->
+    <!--android:id="@+id/btn2"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:background="@drawable/card_bk"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="35dp"-->
+    <!--android:text="click_me"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+    <!--ripple:alphaFactor="0.7"-->
+    <!--ripple:hover="true"-->
+    <!--ripple:radius="40"-->
+    <!--ripple:rippleColor="#58FAAC"-->
+    <!--ripple:rippleType="1" />-->
+
+    <com.sanniuben.circlerippleview.view.WaveView
+        android:id="@+id/waveView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/card_bk"
+        android:padding="35dp"
+        android:text="click_me"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        ripple:rippleColor="#58FAAC" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/card_bk"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="35dp"
+                ripple:alphaFactor="0.7"
+                ripple:hover="true"
+                ripple:radius="20"
+                ripple:maxRadius="40"
+                ripple:rippleColor="#58FAAC"
+                ripple:rippleType="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="click" />
+            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+
+            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/card_bk"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="35dp"
+                ripple:alphaFactor="0.7"
+                ripple:hover="true"
+                ripple:radius="20"
+                ripple:maxRadius="40"
+                ripple:rippleColor="#58FAAC"
+                ripple:rippleType="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="click" />
+            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+
+            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/card_bk"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="35dp"
+                ripple:alphaFactor="0.7"
+                ripple:hover="true"
+                ripple:radius="20"
+                ripple:maxRadius="40"
+                ripple:rippleColor="#58FAAC"
+                ripple:rippleType="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="click" />
+            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+
+            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+                android:id="@+id/btn_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/card_bk"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="35dp"
+                ripple:alphaFactor="0.7"
+                ripple:hover="true"
+                ripple:radius="20"
+                ripple:maxRadius="40"
+                ripple:rippleColor="#58FAAC"
+                ripple:rippleType="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="click" />
+            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+
+            <com.sanniuben.circlerippleview.view.CycleRippleLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/card_bk"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="35dp"
+                ripple:alphaFactor="0.7"
+                ripple:hover="true"
+                ripple:radius="20"
+                ripple:maxRadius="40"
+                ripple:rippleColor="#58FAAC"
+                ripple:rippleType="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="click" />
+            </com.sanniuben.circlerippleview.view.CycleRippleLinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!--<com.sanniuben.circlerippleview.view.CycleRippleListView-->
+        <!--android:id="@+id/listView"-->
+        <!--android:listSelector="#00000000"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="wrap_content"></com.sanniuben.circlerippleview.view.CycleRippleListView>-->
+
+</LinearLayout>
