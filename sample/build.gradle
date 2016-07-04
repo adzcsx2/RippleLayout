@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.sanniuben.circlerippleview"
+        applicationId "com.hoyn.circlerippleview"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1

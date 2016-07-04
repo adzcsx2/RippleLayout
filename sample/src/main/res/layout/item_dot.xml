@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.sanniuben.circlerippleview.view.RippleLinearLayout
+    <com.hoyn.main.widget.RippleDotLinearLayout
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,6 @@
         android:padding="35dp"
         ripple:alphaFactor="0.7"
         ripple:radius="20"
-        ripple:maxRadius="30"
         ripple:rippleColor="#58FAAC"
         ripple:rippleType="2">
 
@@ -24,5 +23,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="click" />
-    </com.sanniuben.circlerippleview.view.RippleLinearLayout>
+    </com.hoyn.main.widget.RippleDotLinearLayout>
 </LinearLayout>

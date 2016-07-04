@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.hoyn.main.widget.RippleWaveLinearLayout
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/card_bk"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="35dp"
+        ripple:alphaFactor="0.7"
+        ripple:radius="20"
+        ripple:maxRadius="40"
+        ripple:rippleColor="#58FAAC"
+        ripple:rippleType="2">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="click" />
+    </com.hoyn.main.widget.RippleWaveLinearLayout>
+</LinearLayout>

@@ -1,17 +1,18 @@
-package com.sanniuben.circlerippleview.ui;
+package com.hoyn.main.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.hoyn.circlerippleview.R;
 
-import com.sanniuben.circlerippleview.R;
 
 /**
  * Created by Hoyn on 2016/6/24.
  */
-public class Adapter extends BaseAdapter{
+public class WaveAdapter extends BaseAdapter{
+
     @Override
     public int getCount() {
         return 10;
@@ -29,7 +30,7 @@ public class Adapter extends BaseAdapter{
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
-        convertView =  LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listview,parent,false);
+        convertView =  LayoutInflater.from(parent.getContext()).inflate(R.layout.item_wave,parent,false);
 
         TextView tv = (TextView) convertView.findViewById(R.id.tv);
         tv.setText("Click Me");

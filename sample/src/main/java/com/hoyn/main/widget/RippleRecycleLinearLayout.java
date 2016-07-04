@@ -1,22 +1,5 @@
-package com.sanniuben.circlerippleview.view;
+package com.hoyn.main.widget;
 
-/*
- * Copyright (C) 2013 Muthuramakrishnan <siriscac@gmail.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -27,26 +10,26 @@ import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewParent;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.widget.Button;
+import android.widget.AbsListView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
+import com.hoyn.circlerippleview.R;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
-import com.sanniuben.circlerippleview.R;
 
-@SuppressLint("ClickableViewAccessibility")
-public class CycleRippleView extends Button {
-
-    private static final String TAG = "RippleView";
-
+/**
+ * Created by Hoyn on 2016/7/4.
+ */
+public class RippleRecycleLinearLayout extends LinearLayout {
     private static final int TYPE_DOT = 0;
-    private static final int TYPE_RECYCLE = 1;
-    private static final int TYPE_WAVE = 2;
-
-
+//    private static final int TYPE_RECYCLE = 1;
+//    private static final int TYPE_WAVE = 2;
 
     private float mDownX;
     private float mDownY;
@@ -66,26 +49,23 @@ public class CycleRippleView extends Button {
     private boolean isAnimating_up = false;
     private boolean isOnActionDown = false;
 
-    private  int circleSize = 50;
+    private int circleSize = 50;
     private int mAnimatorType = 0;
+    private boolean isInScroll = false;
 
     private int dp(int dp) {
         return (int) (dp * mDensity + 0.5f);
     }
 
-    public CycleRippleView(Context context) {
-        this(context, null);
+    public RippleRecycleLinearLayout(Context context) {
+        super(context);
     }
 
-    public CycleRippleView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public CycleRippleView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public RippleRecycleLinearLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
         init();
         TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.RippleView);
+                com.hoyn.circlerippleview.R.styleable.RippleView);
         mRippleColor = a.getColor(R.styleable.RippleView_rippleColor,
                 mRippleColor);
         mAlphaFactor = a.getFloat(R.styleable.RippleView_alphaFactor,
@@ -101,6 +81,10 @@ public class CycleRippleView extends Button {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setAlpha(100);
         setRippleColor(Color.BLACK, 0.2f);
+    }
+
+    public RippleRecycleLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     public void setRippleColor(int rippleColor, float alphaFactor) {
@@ -121,75 +105,72 @@ public class CycleRippleView extends Button {
     private boolean mAnimationIsCancel;
     private Rect mRect;
 
+    private boolean isRootView(ViewParent v) {
+        View rootView = getRootView();
+        return v == rootView;
+    }
 
+    private boolean isInScrollView(ViewParent v) {
+        ViewParent parentView = v.getParent();
+        if (parentView instanceof AbsListView || parentView instanceof ScrollView) {
+            return true;
+        } else {
+            if (!isRootView(parentView)) {
+                isInScrollView(parentView.getParent());
+            }
+            return false;
+        }
+    }
 
     @Override
     public boolean onTouchEvent(final MotionEvent event) {
-        boolean superResult = super.onTouchEvent(event);
+        boolean superEvent = super.onTouchEvent(event);
         if (event.getActionMasked() == MotionEvent.ACTION_DOWN
                 && this.isEnabled() && mHover) {
             //can't click before figger up
-            if (mAnimatorType == TYPE_WAVE) {
-                return true;
-            }
             if (isOnActionDown) {
-                return false;
+                return !superEvent;
             }
             isOnActionDown = true;
             mRect = new Rect(getLeft(), getTop(), getRight(), getBottom());
             mAnimationIsCancel = false;
             mDownX = event.getX();
             mDownY = event.getY();
-            if(mAnimatorType==TYPE_RECYCLE){
+            //if in ListView,Gridview or ScrollView
+            if (isInScroll) {
+                final float tempRadius = (float) Math.sqrt(mDownX * mDownX + mDownY
+                        * mDownY);
+                float targetRadius = Math.max(tempRadius, mMaxRadius);
+                animationStartByUp(0, targetRadius, 500);
+            } else {
                 animationStart(0, dp(circleSize), 400);
-            }else if(mAnimatorType==TYPE_DOT){
-                animationStartByUp(0, dp(circleSize), 150);
-            }
-            if (!superResult) {
-                return true;
             }
 
         } else if (event.getActionMasked() == MotionEvent.ACTION_MOVE
                 && this.isEnabled() && mHover) {
-            if (mAnimatorType == TYPE_RECYCLE) {
 
-                //can't click before figger up
-                mDownX = event.getX();
-                mDownY = event.getY();
-                // Cancel the ripple animation when moved outside
-                if (mAnimationIsCancel = !mRect.contains(getLeft() + (int) event.getX(), getTop() + (int) event.getY())) {
-                    final float tempRadius = (float) Math.sqrt(mDownX * mDownX + mDownY
-                            * mDownY);
-                    float targetRadius = Math.max(tempRadius, mMaxRadius);
-                    animationStartByUp(0, targetRadius, 500);
-                } else {
-                    setRadius(dp(circleSize));
-                }
-                if (!superResult) {
-                    return true;
-                }
-            }
+            //can't click before figger up
+            mDownX = event.getX();
+            mDownY = event.getY();
+            invalidate();
         } else if (event.getActionMasked() == MotionEvent.ACTION_UP
                 && !mAnimationIsCancel && this.isEnabled()) {
-            if (mAnimatorType == TYPE_RECYCLE) {
-                Log.e("aa", "bb");
-                mDownX = event.getX();
-                mDownY = event.getY();
-
-                final float tempRadius = (float) Math.sqrt(mDownX * mDownX + mDownY
-                        * mDownY);
-                float targetRadius = Math.max(tempRadius, mMaxRadius);
-
-                if (isAnimating) {
-                    mRadiusAnimator.cancel();
-                }
-                animationStartByUp(0, targetRadius, 500);
-                if (!superResult) {
-                    return true;
-                }
+            if(isInScroll){
+                return superEvent;
             }
+            mDownX = event.getX();
+            mDownY = event.getY();
+
+            final float tempRadius = (float) Math.sqrt(mDownX * mDownX + mDownY
+                    * mDownY);
+            float targetRadius = Math.max(tempRadius, mMaxRadius);
+
+            if (isAnimating) {
+                mRadiusAnimator.cancel();
+            }
+            animationStartByUp(0, targetRadius, 500);
         }
-        return superResult;
+        return superEvent;
     }
 
     public int adjustAlpha(int color, float factor) {
@@ -204,11 +185,8 @@ public class CycleRippleView extends Button {
         mRadius = radius;
         if (mRadius > 0) {
             mRadialGradient = new RadialGradient(mDownX, mDownY, mRadius,
-                    Color.WHITE, mRippleColor,
+                    adjustAlpha(mRippleColor, mAlphaFactor), mRippleColor,
                     Shader.TileMode.MIRROR);
-//            mRadialGradient = new RadialGradient(mDownX, mDownY, mRadius,
-//                    adjustAlpha(mRippleColor, mAlphaFactor), mRippleColor,
-//                    Shader.TileMode.MIRROR);
             mPaint.setShader(mRadialGradient);
         }
         invalidate();
@@ -217,17 +195,18 @@ public class CycleRippleView extends Button {
     private Path mPath = new Path();
 
     @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        isInScroll = isInScrollView(getParent());
+    }
+
+    @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
 
         if (isInEditMode()) {
             return;
         }
-        canvas.save(Canvas.CLIP_SAVE_FLAG);
-        mPath.reset();
-        mPath.addCircle(mDownX, mDownY, mRadius, Path.Direction.CW);
-        canvas.clipPath(mPath);
-        canvas.restore();
         canvas.drawCircle(mDownX, mDownY, mRadius, mPaint);
     }
 
@@ -245,13 +224,8 @@ public class CycleRippleView extends Button {
 
     //up
     private void animationStartByUp(final float from, final float to, final int duration) {
-        if (mAnimatorType == TYPE_DOT) {
-            mRadiusAnimator = ObjectAnimator.ofFloat(this, "radius", from,
-                    to);
-        } else if (mAnimatorType == TYPE_RECYCLE) {
-            mRadiusAnimator = ObjectAnimator.ofFloat(this, "radius", 0,
-                    to);
-        }
+        mRadiusAnimator = ObjectAnimator.ofFloat(this, "radius", 0,
+                to);
         mRadiusAnimator.setDuration(duration);
         mRadiusAnimator.setRepeatMode(Animation.REVERSE);
         mRadiusAnimator.setRepeatCount(1);
